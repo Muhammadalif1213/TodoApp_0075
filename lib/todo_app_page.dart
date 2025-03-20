@@ -9,7 +9,7 @@ class TodoWidget extends StatefulWidget {
 
 class _TodoWidgetState extends State<TodoWidget> {
   final TextEditingController nameController = TextEditingController();
-
+  final key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,45 +27,57 @@ class _TodoWidgetState extends State<TodoWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Task Date:'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Select a date'),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.calendar_today),
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: nameController,
-                      validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        label: Text('First Name'),
-                        hintText: 'Masukan Kegiatan Anda',
-                      ),
+              Form(
+                key: key,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Task Date:'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Select a date'),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.calendar_today),
+                          color: Colors.blue,
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  ElevatedButton(
-                    onPressed: (){},
-                    style: ElevatedButton.styleFrom( backgroundColor: Theme.of(context).primaryColor, foregroundColor: Colors.white),
-                    child: const Text("Submit")
-                  ),
-                ],
+                    const SizedBox(height: 30),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: nameController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              label: Text('First Name'),
+                              hintText: 'Masukan Kegiatan Anda',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                            foregroundColor: Colors.white,
+                          ),
+                          child: const Text("Submit"),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
