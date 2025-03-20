@@ -69,9 +69,11 @@ class _TodoWidgetState extends State<TodoWidget> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Select a date'),
+                        Text(_selectedDateTime == null
+                              ? "Select date & time"
+                              : DateFormat('dd-MM-yyyy HH:mm').format(_selectedDateTime!)),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: pickDateTime,
                           icon: Icon(Icons.calendar_today),
                           color: Colors.blue,
                         ),
