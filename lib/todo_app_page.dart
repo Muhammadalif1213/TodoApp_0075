@@ -87,16 +87,21 @@ class _TodoWidgetState extends State<TodoWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Task Date:'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          _selectedDateTime == null
-                              ? "Select date & time"
-                              : DateFormat(
-                                'dd-MM-yyyy HH:mm',
-                              ).format(_selectedDateTime!),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Task Date:'),
+                            Text(
+                              _selectedDateTime == null
+                                  ? "Select a date"
+                                  : DateFormat(
+                                    'dd-MM-yyyy HH:mm',
+                                  ).format(_selectedDateTime!),
+                            ),
+                          ],
                         ),
                         IconButton(
                           onPressed: pickDateTime,
@@ -105,6 +110,11 @@ class _TodoWidgetState extends State<TodoWidget> {
                         ),
                       ],
                     ),
+                    if (_selectedDateTime == null)
+                      const Text(
+                        "Please select a date & time",
+                        style: TextStyle(color: Colors.red),
+                      ),
                     const SizedBox(height: 30),
                     Row(
                       children: [
@@ -191,7 +201,10 @@ class _TodoWidgetState extends State<TodoWidget> {
                               Text(
                                 task['isDone'] ? "Done" : "Not Done",
                                 style: TextStyle(
-                                  color: task['isDone'] ? Colors.green : Colors.red,
+                                  color:
+                                      task['isDone']
+                                          ? Colors.green
+                                          : Colors.red,
                                 ),
                               ),
                             ],
