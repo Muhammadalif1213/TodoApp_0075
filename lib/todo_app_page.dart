@@ -10,6 +10,14 @@ class TodoWidget extends StatefulWidget {
 class _TodoWidgetState extends State<TodoWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: EdgeInsets.only(top: 24),
+          child: Text('Form Page', style: TextStyle(fontSize: 26)),
+        ),
+        centerTitle: true,
+      ),
+    );
   }
 }
