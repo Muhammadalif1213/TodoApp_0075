@@ -178,6 +178,14 @@ class _TodoWidgetState extends State<TodoWidget> {
                               ),
                             ],
                           ),
+                          Checkbox(
+                            value: task['isDone'],
+                            onChanged: (bool? value) {
+                              setState(() {
+                                task['isDone'] = value ?? false;
+                              });
+                            },
+                          ),
                         ],
                       ),
                     );
