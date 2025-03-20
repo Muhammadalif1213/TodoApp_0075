@@ -12,6 +12,7 @@ class _TodoWidgetState extends State<TodoWidget> {
   final TextEditingController nameController = TextEditingController();
   final key = GlobalKey<FormState>();
   DateTime? _selectedDateTime;
+  final List<Map<String, dynamic>> _tasks = [];
 
 
   void pickDateTime() async {
@@ -41,6 +42,18 @@ class _TodoWidgetState extends State<TodoWidget> {
           );
         });
       }
+    }
+  }
+
+  void addTask() {
+    if (key.currentState!.validate() && _selectedDateTime != null) {
+      setState(() {
+        _tasks.add({
+          'title': nameController.text,
+          'deadline': _selectedDateTime!,
+          'isDone': false,
+        });
+      });
     }
   }
 
@@ -102,7 +115,7 @@ class _TodoWidgetState extends State<TodoWidget> {
                         ),
                         const SizedBox(width: 20),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: addTask,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor,
                             foregroundColor: Colors.white,
