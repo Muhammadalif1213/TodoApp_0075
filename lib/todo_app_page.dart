@@ -29,6 +29,18 @@ class _TodoWidgetState extends State<TodoWidget> {
         context: context,
         initialTime: TimeOfDay.now(),
       );
+
+      if (pickedTime != null) {
+        setState(() {
+          _selectedDateTime = DateTime(
+            pickedDate.year,
+            pickedDate.month,
+            pickedDate.day,
+            pickedTime.hour,
+            pickedTime.minute,
+          );
+        });
+      }
     }
   }
 
