@@ -18,6 +18,24 @@ class _TodoWidgetState extends State<TodoWidget> {
         ),
         centerTitle: true,
       ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Task Date:'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Select a date'),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.calendar_today), color: Colors.blue,),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
