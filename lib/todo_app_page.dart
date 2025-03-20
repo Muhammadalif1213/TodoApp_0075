@@ -14,10 +14,9 @@ class _TodoWidgetState extends State<TodoWidget> {
   DateTime? _selectedDateTime;
   final List<Map<String, dynamic>> _tasks = [];
 
-
   void pickDateTime() async {
     DateTime now = DateTime.now();
-    
+
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: now,
@@ -92,9 +91,13 @@ class _TodoWidgetState extends State<TodoWidget> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(_selectedDateTime == null
+                        Text(
+                          _selectedDateTime == null
                               ? "Select date & time"
-                              : DateFormat('dd-MM-yyyy HH:mm').format(_selectedDateTime!)),
+                              : DateFormat(
+                                'dd-MM-yyyy HH:mm',
+                              ).format(_selectedDateTime!),
+                        ),
                         IconButton(
                           onPressed: pickDateTime,
                           icon: Icon(Icons.calendar_today),
@@ -134,7 +137,51 @@ class _TodoWidgetState extends State<TodoWidget> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'List Tasks',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 26,
+                      ),
+                    ),
                   ],
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _tasks.length,
+                  itemBuilder: (context, index) {
+                    final task = _tasks[index];
+                    return Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                task['title'],
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "Deadline: ${DateFormat('dd-MM-yyyy HH:mm').format(task['deadline'])}",
+                              ),
+                              Text(
+                                task['isDone'] ? "Done" : "Not Done",
+                                style: TextStyle(
+                                  color: task['isDone'] ? Colors.green : Colors.red,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
