@@ -8,6 +8,9 @@ class TodoWidget extends StatefulWidget {
 }
 
 class _TodoWidgetState extends State<TodoWidget> {
+  final TextEditingController nameController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +43,15 @@ class _TodoWidgetState extends State<TodoWidget> {
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: TextFormField(
+                      controller: nameController,
+                      validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         label: Text('First Name'),
