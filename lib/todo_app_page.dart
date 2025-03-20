@@ -29,9 +29,21 @@ class _TodoWidgetState extends State<TodoWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Select a date'),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.calendar_today), color: Colors.blue,),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.calendar_today),
+                    color: Colors.blue,
+                  ),
                 ],
               ),
+              const SizedBox(height: 30),
+              TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        label: Text('First Name'),
+                        hintText: 'Masukan Kegiatan Anda',
+                      ),
+                    ),
             ],
           ),
         ),
