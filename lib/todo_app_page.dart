@@ -16,13 +16,20 @@ class _TodoWidgetState extends State<TodoWidget> {
 
   void pickDateTime() async {
     DateTime now = DateTime.now();
-
+    
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: now,
       firstDate: now,
       lastDate: DateTime(2100),
     );
+
+    if (pickedDate != null) {
+      TimeOfDay? pickedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      );
+    }
   }
 
   @override
