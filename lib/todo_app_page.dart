@@ -57,6 +57,13 @@ class _TodoWidgetState extends State<TodoWidget> {
 
       nameController.clear();
       _selectedDateTime = null;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Task added successfully"),
+          backgroundColor: Colors.green,
+        ),
+      );
     }
   }
 
