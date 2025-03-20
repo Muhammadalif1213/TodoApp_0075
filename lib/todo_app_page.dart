@@ -37,13 +37,25 @@ class _TodoWidgetState extends State<TodoWidget> {
                 ],
               ),
               const SizedBox(height: 30),
-              TextField(
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         label: Text('First Name'),
                         hintText: 'Masukan Kegiatan Anda',
                       ),
                     ),
+                  ),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom( backgroundColor: Theme.of(context).primaryColor, foregroundColor: Colors.white),
+                    child: const Text("Submit")
+                  ),
+                ],
+              ),
             ],
           ),
         ),
