@@ -54,6 +54,9 @@ class _TodoWidgetState extends State<TodoWidget> {
           'isDone': false,
         });
       });
+
+      nameController.clear();
+      _selectedDateTime = null;
     }
   }
 
